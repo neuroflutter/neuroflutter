@@ -1,0 +1,31 @@
+# How Netlify builds and serves NeuroFlutter.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Keeps the studio's React requirement from blocking install on the site.
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# The editorial dashboard is a single-page app. Deep links inside it (for
+# example /studio/structure/article) must all load its index.html. Existing
+# files are served first, so this never shadows the website's own pages.
+[[redirects]]
+  from = "/studio/*"
+  to = "/studio/index.html"
+  status = 200
+
+# The dashboard's icons and manifest are requested from /static/. The website
+# itself uses /_next/static/, so this path is free and the two never collide.
+[[redirects]]
+  from = "/static/*"
+  to = "/studio/static/:splat"
+  status = 200
+
+# The dashboard must never appear in search results.
+[[headers]]
+  for = "/studio/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

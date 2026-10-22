@@ -1,0 +1,865 @@
+{
+  "generatedFrom": "src/content/articles.ts and src/content/authors.ts",
+  "authors": [
+    {
+      "id": "hala",
+      "name": "Hala Al Masri",
+      "role": "Founder, NeuroFlutter | Neuroscience Researcher",
+      "affiliation": "King's College London",
+      "bio": "Hala Al Masri is the founder of NeuroFlutter and a neuroscience researcher working with an ALS research team at King's College London. Her research focuses on neurodegeneration, neuroinflammation and biomarkers, including inflammatory cytokine profiling in post-mortem ALS brain tissue. She also supports MND/ALS clinical research and biobank activities at King's College Hospital NHS Foundation Trust and contributes to postgraduate neuroscience teaching. Through NeuroFlutter, she hopes to make neuroscience more accessible and encourage curiosity, learning and scientific collaboration.",
+      "researchInterests": [
+        "Neurodegeneration",
+        "Neuroinflammation",
+        "Biomarkers"
+      ],
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/company/neuroflutter"
+        },
+        {
+          "label": "Instagram",
+          "href": "https://www.instagram.com/neuroflutter/"
+        },
+        {
+          "label": "Email",
+          "href": "mailto:neuroflutter@outlook.com"
+        }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "slug": "the-brain-before-symptoms",
+      "title": "The Brain Before Symptoms",
+      "standfirst": "How neuroscience is learning to detect disease before it becomes visible.",
+      "authorId": "hala",
+      "category": "Neurodegenerative Diseases",
+      "kind": "Explainer",
+      "publishedAt": "2026-04-27T09:00:00.000Z",
+      "readingMinutes": 6,
+      "imageAlt": "Watercolour illustration of a human brain in soft pink and cream tones, shown in profile.",
+      "imageCredit": "Illustration © NeuroFlutter",
+      "imagePath": "/illustrations/brain-plain.webp",
+      "featured": true,
+      "body": [
+        {
+          "_type": "block",
+          "_key": "b0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "What if the brain could tell us it was struggling before memory faded, before movement changed, before speech softened, before a person no longer felt quite like themselves?",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "For much of modern medicine, neurodegenerative diseases have been recognised when symptoms become visible enough to name. A tremor appears. A memory begins to slip. A muscle weakens. A family notices that something is different. By that point, the biology of disease may have been unfolding quietly for years.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "This is one of the most difficult truths in neurodegeneration: the clinical diagnosis often arrives late in the biological story.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b3",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s3",
+              "text": "But neuroscience is beginning to shift. Researchers are no longer only asking what symptoms a person has. They are also asking what the body might reveal earlier through blood, cerebrospinal fluid, brain imaging, genetics, immune signals and molecular patterns.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b4",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s4",
+              "text": "In simple terms, the field is moving from waiting for symptoms to listening for signals.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b5",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s5",
+              "text": "A biomarker is one of these signals. It is a measurable biological clue that can tell us something about what is happening inside the body. In neurodegeneration, biomarkers may come from proteins in blood, changes in cerebrospinal fluid, brain scans, genetic markers, or immune molecules. Alone, they rarely tell the whole story. But together, they can help researchers see disease biology in motion.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b6",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s6",
+              "text": "This matters because symptoms are often late arrivals. The body does not suddenly become ill on the day a diagnosis is made. Diagnosis is usually the moment medicine finally catches up with a process that has been building in the background.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b7",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s7",
+              "text": "This shift is especially clear in Alzheimer’s disease. For years, confirming Alzheimer’s-related pathology often relied on specialist tools such as amyloid PET scans or cerebrospinal fluid testing through lumbar puncture. These methods are valuable, but they are expensive, invasive, and not always easily available.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b8",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s8",
+              "text": "Now, blood-based biomarkers are changing the conversation.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b9",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s9",
+              "text": "One of the most promising is p-tau217, a phosphorylated form of tau. Put simply, it is a blood marker that can reflect key Alzheimer’s-related changes in the brain, particularly amyloid and tau pathology. It is not a replacement for clinical judgement, cognitive assessment, imaging, or a full patient history. But it may help make Alzheimer’s biology easier to detect earlier, more objectively, and more accessibly than before.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b10",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s10",
+              "text": "That is the quiet revolution.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b11",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s11",
+              "text": "Not a dramatic cure. Not a single test that explains everything. But a new way of seeing disease before it fully declares itself.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b12",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s12",
+              "text": "Blood is familiar. Blood is practical. Blood can be taken in a clinic without needing a brain scan or spinal procedure. Of course, that does not mean everyone should be casually tested without context. Biomarkers need careful interpretation, proper validation, and responsible use. But the direction of travel is clear: Alzheimer’s diagnosis is beginning to move from a world of “we think this may be what is happening” towards a world where disease biology can be measured more directly.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b13",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s13",
+              "text": "And this is not only about Alzheimer’s.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b14",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s14",
+              "text": "Across neurodegeneration, researchers are becoming increasingly interested in biological signatures rather than single answers. In ALS, for example, neurofilament light chain, often called NfL, is widely studied as a marker of neuroaxonal injury. When neurones are damaged, structural proteins can be released into blood and cerebrospinal fluid. NfL does not tell us everything, and it is not specific to ALS alone, but it can indicate that the nervous system is under stress.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b15",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s15",
+              "text": "Alongside this, immune markers are gaining attention. The immune system is no longer seen as background noise in brain disease. Microglia, astrocytes, cytokines and peripheral immune changes may all help shape disease progression. Cytokines, which are small signalling molecules used by immune cells, may offer clues about inflammatory activity in and around the nervous system.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b16",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s16",
+              "text": "This is where neurodegeneration starts to look less like a single brain problem and more like a whole-body conversation.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b17",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s17",
+              "text": "The brain is not sealed away from the rest of the body. It is constantly interacting with the immune system, blood vessels, metabolism, stress pathways and environment. Disease may become visible in the brain, but its signals can appear across the body.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b18",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s18",
+              "text": "The body keeps receipts. Biomarkers may be one way of reading them.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b19",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s19",
+              "text": "Parkinson’s disease is also part of this shift. Researchers are exploring ways to detect misfolded alpha-synuclein, a protein closely linked to Parkinson’s pathology, through specialised assays. These approaches are still developing, but they reflect the same wider idea: neurodegenerative disease may one day be defined not only by visible symptoms, but by the molecular processes beneath them.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b20",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s20",
+              "text": "This could change how we diagnose, study and treat these diseases.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b21",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s21",
+              "text": "In the future, two people with the same clinical diagnosis may not simply be grouped together as if they have identical biology. Instead, they may be understood through different biological profiles: one showing stronger inflammation, another showing faster neuroaxonal injury, another showing a specific protein signature, another shaped by genetic risk.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b22",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s22",
+              "text": "That matters because treatments may not work equally for everyone. A drug may fail in a broad group but help a subgroup whose biology matches the treatment mechanism. This is one reason biomarkers are becoming so important in clinical trials. They may help researchers choose the right participants, track whether a treatment is affecting the intended target, and understand why some people respond while others do not.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b23",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s23",
+              "text": "In simple terms, biomarkers could help neuroscience become more precise.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b24",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s24",
+              "text": "But this future also needs caution. Earlier detection is not automatically the same as better care. If we can detect disease before symptoms, we also need to ask difficult questions. Who should be tested? When should they be tested? What happens if someone shows biological signs of disease but has no symptoms? How do we protect people from fear, stigma, or information they cannot yet act on?",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b25",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s25",
+              "text": "A beautiful scientific future still needs ethics.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b26",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s26",
+              "text": "The aim should not be to turn everyone into a patient before they feel unwell. The aim should be to use biological information thoughtfully, in the right context, to improve diagnosis, research and care.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b27",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s27",
+              "text": "Still, the promise is difficult to ignore.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b28",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s28",
+              "text": "Earlier detection could mean less time spent in uncertainty. It could mean patients are believed sooner. It could mean families receive answers before years of confusion. It could mean clinical trials happen earlier, when interventions may have a better chance of changing the course of disease.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b29",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s29",
+              "text": "Most importantly, it could change the emotional experience of neurodegeneration. These diseases do not only affect cells and proteins. They affect memory, movement, speech, independence, personality and identity. They affect how people recognise themselves and how families recognise the person they love.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b30",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s30",
+              "text": "So when we talk about biomarkers, we are not only talking about blood tests and lab values. We are talking about time. Time to understand. Time to plan. Time to intervene. Time to be believed.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b31",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s31",
+              "text": "That is the real beauty of this field.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b32",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s32",
+              "text": "The brain may leave traces of distress long before the outside world can see them. Tiny clues. Molecular whispers. Signals in blood, proteins and immune patterns. Evidence that something is shifting beneath the surface.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b33",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s33",
+              "text": "For NeuroFlutter, this is where neuroscience becomes more than a subject. It becomes a way of noticing.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b34",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s34",
+              "text": "Noticing the invisible.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b35",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s35",
+              "text": "Noticing the early signs.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b36",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s36",
+              "text": "Noticing that disease is not only what appears at the surface.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b37",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s37",
+              "text": "The brain before symptoms is not just a scientific idea. It is a new way of thinking about care.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b38",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s38",
+              "text": "Because perhaps the brain was never silent before symptoms.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b39",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s39",
+              "text": "We are only just learning how to listen.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "references": []
+    },
+    {
+      "slug": "the-brain-has-always-been-the-original-intelligence",
+      "title": "The Brain Has Always Been the Original Intelligence",
+      "standfirst": "AI may be changing the future of neuroscience, but the brain remains the most extraordinary intelligence we know.",
+      "authorId": "hala",
+      "category": "Perspectives",
+      "kind": "Perspective",
+      "publishedAt": "2026-07-04T09:00:00.000Z",
+      "readingMinutes": 2,
+      "imageAlt": "Watercolour illustration of a lightbulb resting on layered red and green petals.",
+      "imageCredit": "Illustration © NeuroFlutter",
+      "imagePath": "/illustrations/lightbulb-flower.webp",
+      "featured": true,
+      "body": [
+        {
+          "_type": "block",
+          "_key": "b0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "We keep talking about artificial intelligence as if intelligence suddenly arrived with a screen, a prompt, and an answer generated in seconds.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "But long before algorithms learned to predict language, the brain was already doing something far more extraordinary. It was predicting, adapting, remembering, forgetting, imagining, protecting, and rebuilding itself every second.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "The brain has always been the original intelligence.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b3",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s3",
+              "text": "That is what makes AI so fascinating in neuroscience. It is not just a new tool. It is a mirror. It pushes us to ask better questions about what thinking is, what learning means, and how far we can go when human cognition works alongside machine intelligence.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b4",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s4",
+              "text": "In neuroscience, this matters deeply. The brain is not one simple system. It is electrical, chemical, emotional, genetic, inflammatory, and constantly changing.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b5",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s5",
+              "text": "No single scan, blood marker, symptom, or memory test can explain the whole story. Especially in neurodegenerative diseases like Alzheimer’s, Parkinson’s, and ALS, the biology often begins shifting long before symptoms become obvious.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b6",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s6",
+              "text": "This is where AI becomes powerful.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b7",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s7",
+              "text": "Not because it can replace the scientist, clinician, or researcher, but because it can help us see patterns across data that are too complex for the human mind to hold at once. Brain imaging, blood proteins, genetics, clinical symptoms, disease progression, inflammation, behaviour. Individually, each gives us part of the picture. Together, they may help us understand disease earlier and more precisely.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b8",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s8",
+              "text": "For neurodegeneration, that could be life-changing. Earlier patterns could mean earlier diagnosis. Earlier diagnosis could mean better monitoring, better trials, better treatment windows, and more time for patients and families.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b9",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s9",
+              "text": "But while AI can help us understand the brain, we also have to protect the way we use our own.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b10",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s10",
+              "text": "The brain is not passive. It strengthens what we repeatedly ask it to do. If we use AI to support curiosity, reflection, and deeper thinking, it becomes an incredible tool. If we use it to skip the process completely, we risk losing the very skills that make human intelligence so valuable: attention, judgement, memory, creativity, and critical thinking.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b11",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s11",
+              "text": "So maybe the future is not about choosing between human intelligence and artificial intelligence.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b12",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s12",
+              "text": "Maybe it is about learning how to think better with both.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b13",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s13",
+              "text": "AI should not replace the question. It should help us ask a better one. It should not remove the struggle from learning. It should make the difficult parts more accessible. It should not take over the brain’s work. It should help us understand the brain with more depth, more precision, and more imagination.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b14",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s14",
+              "text": "As someone in neuroscience, I do not see AI as the opposite of human thought.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b15",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s15",
+              "text": "I see it as one of the most interesting tools we now have to study it.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "b16",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s16",
+              "text": "Because somewhere between neurons and algorithms, the next chapter of neuroscience is being written.",
+              "marks": []
+            }
+          ]
+        }
+      ],
+      "references": []
+    }
+  ]
+}
