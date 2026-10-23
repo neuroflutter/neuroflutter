@@ -32,19 +32,8 @@ export const site = {
       icon: "/icons/icon-linkedin.webp",
     },
   ],
-  /**
-   * Kit (kit.com) form action URL, taken from the form's HTML embed code.
-   * Looks like https://app.kit.com/forms/<form-id>/subscriptions
-   * While it is empty the signup stays visibly inactive rather than
-   * silently discarding addresses.
-   */
-  newsletterEndpoint:
-    process.env.NEXT_PUBLIC_KIT_FORM_ACTION ??
-    "https://app.kit.com/forms/10064287/subscriptions",
-  /** From the Kit embed code. Both are public identifiers, not secrets. */
-  kitFormId: "10064287",
-  kitFormUid: "294836c225",
-  newsletterProvider: "Kit",
+  /** Mailing list runs on Resend; the signup posts to /api/subscribe. */
+  newsletterProvider: "Resend",
   /** Official profiles, used for schema.org sameAs. */
   sameAs: [
     "https://www.instagram.com/neuroflutter/",

@@ -5,23 +5,18 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 /**
- * Mailing list signup, posting to Kit (kit.com).
+ * Mailing list signup.
  *
- * The form submits itself rather than relying on Kit's ck.5.js embed script.
- * That script intercepts the submit and then renders its result into markup
- * this form does not have, so a signup could finish with the form simply
- * disappearing and no confirmation shown. Posting directly keeps the outcome
- * explicit and on the page.
- *
- * The form action is still set, so with JavaScript switched off the browser
- * posts to Kit normally and nothing is lost. The form id is a public
- * identifier from Kit's embed code — there is no key or token here.
+ * Posts to /api/subscribe, a small function running on Netlify that holds the
+ * Resend key privately and never exposes it to the browser. The form action is
+ * set as well, so with JavaScript switched off the browser posts normally and
+ * the function redirects back — a signup is never silently lost.
  */
 
 type State =
   | { kind: "idle" }
   | { kind: "sending" }
-  | { kind: "done" }
+  | { kind: "done"; already: boolean }
   | { kind: "error"; message: string };
 
 const GENERIC_ERROR =
@@ -33,44 +28,29 @@ export default function Newsletter() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-    const email = new FormData(form).get("email_address");
+    const data = new FormData(form);
+    const email = data.get("email");
     if (typeof email !== "string" || !email) return;
 
     setState({ kind: "sending" });
     try {
-      const response = await fetch(site.newsletterEndpoint, {
+      const response = await fetch("/api/subscribe", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ email_address: email }).toString(),
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({ email, website: data.get("website") ?? "" }),
       });
 
       const result = (await response.json().catch(() => null)) as
-        | { status?: string; message?: string; error?: { message?: string } }
+        | { ok?: boolean; already?: boolean; message?: string }
         | null;
 
-      if (response.ok && result?.status === "success") {
-        setState({ kind: "done" });
+      if (response.ok && result?.ok) {
+        setState({ kind: "done", already: Boolean(result.already) });
         form.reset();
         return;
       }
 
-      if (result?.status === "quarantined") {
-        // Kit's anti-abuse guard, usually after repeated attempts.
-        setState({
-          kind: "error",
-          message:
-            "Kit has paused signups from this connection for a short while. Please try again later, or email us and we’ll add you.",
-        });
-        return;
-      }
-
-      setState({
-        kind: "error",
-        message: result?.error?.message || result?.message || GENERIC_ERROR,
-      });
+      setState({ kind: "error", message: result?.message || GENERIC_ERROR });
     } catch {
       setState({ kind: "error", message: GENERIC_ERROR });
     }
@@ -80,11 +60,14 @@ export default function Newsletter() {
     return (
       <div aria-live="polite">
         <p className="text-[1.02rem] leading-[1.8] text-ink">
-          Thank you for joining the NeuroFlutter mailing list.
+          {state.already
+            ? "You’re already on the NeuroFlutter mailing list."
+            : "Thank you for joining the NeuroFlutter mailing list."}
         </p>
         <p className="mt-4 text-[0.88rem] leading-relaxed text-ink-soft">
-          Look out for an email from us shortly. It occasionally lands in spam,
-          so it is worth a glance there too.
+          {state.already
+            ? "Nothing more to do — the next update will reach you."
+            : "A welcome email is on its way. It occasionally lands in spam, so it is worth a glance there too."}
         </p>
       </div>
     );
@@ -92,19 +75,13 @@ export default function Newsletter() {
 
   return (
     <form
-      action={site.newsletterEndpoint}
+      action="/api/subscribe"
       method="post"
       onSubmit={onSubmit}
-      className="seva-form formkit-form"
-      data-sv-form={site.kitFormId}
-      data-uid={site.kitFormUid}
-      data-format="inline"
-      data-version="5"
+      className="newsletter-form"
     >
       <p
-        className="formkit-alert formkit-alert-error mb-4 text-[0.92rem] text-maroon empty:hidden"
-        data-element="errors"
-        data-group="alert"
+        className="mb-4 text-[0.92rem] text-maroon empty:hidden"
         role="alert"
         aria-live="assertive"
       >
@@ -118,22 +95,27 @@ export default function Newsletter() {
           </label>
           <input
             id="nf-email"
-            name="email_address"
+            name="email"
             type="email"
             required
             autoComplete="email"
             aria-label="Email address"
-            className="formkit-input mt-2 w-full border-b border-maroon/30 bg-transparent px-1 py-2.5 text-[1rem] text-ink focus:border-maroon focus:outline-none"
+            className="mt-2 w-full border-b border-maroon/30 bg-transparent px-1 py-2.5 text-[1rem] text-ink focus:border-maroon focus:outline-none"
           />
         </div>
         <button
           type="submit"
-          data-element="submit"
           disabled={state.kind === "sending"}
           className="btn-ink shrink-0"
         >
           <span>{state.kind === "sending" ? "Joining…" : "Join the Mailing List"}</span>
         </button>
+      </div>
+
+      {/* Honeypot — hidden from people, tempting to bots */}
+      <div aria-hidden className="absolute left-[-9999px] h-0 overflow-hidden">
+        <label htmlFor="nf-website">Website</label>
+        <input id="nf-website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
       <label className="mt-5 flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
