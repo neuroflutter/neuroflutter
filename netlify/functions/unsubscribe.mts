@@ -47,11 +47,10 @@ function page(heading: string, body: string, status: number) {
 
 async function removeFromAudience(email: string) {
   const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-  if (!apiKey || !audienceId) throw new Error("Resend is not configured.");
+  if (!apiKey) throw new Error("Resend is not configured.");
 
   const res = await fetch(
-    `${RESEND_API}/audiences/${audienceId}/contacts/${encodeURIComponent(email)}`,
+    `${RESEND_API}/contacts/${encodeURIComponent(email)}`,
     {
       method: "PATCH",
       headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },

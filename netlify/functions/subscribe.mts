@@ -54,11 +54,13 @@ export default async (request: Request) => {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  // Optional: groups new subscribers into a segment so broadcasts can target
+  // them. Without it they still land in the account's contacts.
+  const segmentId = process.env.RESEND_SEGMENT_ID;
   const from = process.env.MAIL_FROM || "NeuroFlutter <hello@neuroflutter.com>";
 
-  if (!apiKey || !audienceId) {
-    console.error("RESEND_API_KEY or RESEND_AUDIENCE_ID is not set.");
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not set.");
     return json(
       { ok: false, message: "The mailing list is not connected yet. Please try again later." },
       503,
@@ -80,10 +82,14 @@ export default async (request: Request) => {
   /* ----------------------------------------------------- add to the list */
   let already = false;
   try {
-    const res = await fetch(`${RESEND_API}/audiences/${audienceId}/contacts`, {
+    const res = await fetch(`${RESEND_API}/contacts`, {
       method: "POST",
       headers: auth,
-      body: JSON.stringify({ email, unsubscribed: false }),
+      body: JSON.stringify({
+        email,
+        unsubscribed: false,
+        ...(segmentId ? { segments: [{ id: segmentId }] } : {}),
+      }),
     });
 
     if (!res.ok) {
