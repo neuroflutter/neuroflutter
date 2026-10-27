@@ -12,6 +12,9 @@
  * The email is sent with reply-to set to the contributor, so answering a
  * proposal is just hitting Reply.
  */
+import { welcomeEmail } from "../lib/welcome-email.mjs";
+import { unsubscribeUrl } from "../lib/unsubscribe-token.mjs";
+
 const RESEND_API = "https://api.resend.com";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -32,7 +35,11 @@ const FIELDS = [
 ] as const;
 
 type Field = (typeof FIELDS)[number];
-type Submission = Record<Field, string> & { website: string; formPost: boolean };
+type Submission = Record<Field, string> & {
+  website: string;
+  newsletter: boolean;
+  formPost: boolean;
+};
 
 type Outcome = { ok: true } | { ok: false; message: string };
 
@@ -52,6 +59,7 @@ async function readSubmission(request: Request): Promise<Submission> {
     const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
     for (const field of FIELDS) out[field] = String(body[field] ?? "").trim();
     out.website = String((body as Record<string, unknown>).website ?? "").trim();
+    out.newsletter = Boolean((body as Record<string, unknown>).newsletter);
     out.formPost = false;
     return out;
   }
@@ -59,6 +67,8 @@ async function readSubmission(request: Request): Promise<Submission> {
   const form = await request.formData();
   for (const field of FIELDS) out[field] = String(form.get(field) ?? "").trim();
   out.website = String(form.get("website") ?? "").trim();
+  // An unticked checkbox is absent from the form data entirely.
+  out.newsletter = form.get("newsletter") !== null;
   out.formPost = true;
   return out;
 }
@@ -66,6 +76,20 @@ async function readSubmission(request: Request): Promise<Submission> {
 /** Trims anything absurd before it reaches an inbox. */
 function clamp(value: string, max: number) {
   return value.length > max ? `${value.slice(0, max)}…` : value;
+}
+
+/** "NeuroFlutter <hello@neuroflutter.com>" -> "hello@neuroflutter.com" */
+function addressOnly(from: string) {
+  const match = /<([^>]+)>/.exec(from);
+  return (match ? match[1] : from).trim();
+}
+
+/**
+ * A display name safe to put in a header. Quotes, angle brackets and line
+ * breaks are what header injection is made of.
+ */
+function displayName(value: string) {
+  return value.replace(/["<>\r\n]/g, " ").replace(/\s+/g, " ").trim().slice(0, 60);
 }
 
 function escapeHtml(value: string) {
@@ -98,7 +122,13 @@ function proposalText(sub: Submission) {
     if (!value) continue;
     lines.push(`${LABELS[field].toUpperCase()}`, value, "");
   }
-  lines.push("—", "Sent from the Contribute form on neuroflutter.com");
+  lines.push(
+    "MAILING LIST",
+    sub.newsletter ? "Asked to be added" : "Not requested",
+    "",
+    "—",
+    "Sent from the Contribute form on neuroflutter.com",
+  );
   return lines.join("\n");
 }
 
@@ -119,6 +149,7 @@ function proposalHtml(sub: Submission) {
   <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;margin:0 auto;background:#ffffff;padding:28px 32px;">
     <tr><td style="padding-bottom:18px;border-bottom:1px solid #c9e2f0;font-family:Georgia,serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#9a6779;">New contributor proposal</td></tr>
     <tr><td style="padding-top:8px;"><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;">${rows}</table></td></tr>
+    <tr><td style="padding-top:14px;font-family:Georgia,serif;font-size:13px;color:#6e7c87;">Mailing list: ${sub.newsletter ? "asked to be added" : "not requested"}</td></tr>
     <tr><td style="padding-top:18px;border-top:1px solid #c9e2f0;font-family:Georgia,serif;font-size:12px;color:#8a939b;">Sent from the Contribute form on neuroflutter.com</td></tr>
   </table>
 </body></html>`;
@@ -163,10 +194,12 @@ export default async (request: Request) => {
       method: "POST",
       headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
       body: JSON.stringify({
-        from,
+        // Shows in the inbox as "Jane Okafor via NeuroFlutter", so you can see
+        // who wrote in without opening it. Replies still go to them.
+        from: `"${displayName(sub.name)} via NeuroFlutter" <${addressOnly(from)}>`,
         to: [to],
         reply_to: sub.email,
-        subject: `Contributor proposal — ${clamp(sub.title, 120)}`,
+        subject: `Contributor proposal — ${clamp(displayName(sub.name), 60)} — ${clamp(sub.title, 90)}`,
         text: proposalText(sub),
         html: proposalHtml(sub),
       }),
@@ -185,6 +218,56 @@ export default async (request: Request) => {
       { ok: false, message: "We couldn't send that just now. Please try again in a moment." },
       502,
     );
+  }
+
+  /* ------------------------------------------- optional mailing-list signup */
+  // Only where the person ticked the box. Proposing is never enough on its
+  // own: the privacy notice promises that, and consent has to be a separate,
+  // positive act. A failure here must not lose the proposal, which has
+  // already been sent, so everything below only logs.
+  if (sub.newsletter) {
+    const auth = { authorization: `Bearer ${apiKey}`, "content-type": "application/json" };
+    const segmentId = process.env.RESEND_SEGMENT_ID;
+    try {
+      const res = await fetch(`${RESEND_API}/contacts`, {
+        method: "POST",
+        headers: auth,
+        body: JSON.stringify({
+          email: sub.email,
+          unsubscribed: false,
+          ...(segmentId ? { segments: [{ id: segmentId }] } : {}),
+        }),
+      });
+
+      const detail = res.ok ? "" : await res.text();
+      const already = !res.ok && (res.status === 409 || /already exists/i.test(detail));
+      if (!res.ok && !already) {
+        console.error("Newsletter opt-in: contact create failed", res.status, detail);
+      }
+
+      if (res.ok) {
+        const unsubscribe = unsubscribeUrl(new URL(request.url).origin, sub.email);
+        const welcome = await fetch(`${RESEND_API}/emails`, {
+          method: "POST",
+          headers: auth,
+          body: JSON.stringify({
+            from,
+            to: [sub.email],
+            subject: "Welcome to NeuroFlutter",
+            html: welcomeEmail({ unsubscribeUrl: unsubscribe }),
+            headers: {
+              "List-Unsubscribe": `<${unsubscribe}>`,
+              "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+            },
+          }),
+        });
+        if (!welcome.ok) {
+          console.error("Newsletter opt-in: welcome email failed", welcome.status, await welcome.text());
+        }
+      }
+    } catch (error) {
+      console.error("Newsletter opt-in threw", error);
+    }
   }
 
   // A plain form post (JavaScript switched off) gets a redirect it can follow.

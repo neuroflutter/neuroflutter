@@ -179,6 +179,13 @@ export default function ContributeForm() {
             . *
           </span>
         </label>
+        <label className="flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
+          <input type="checkbox" name="newsletter" className="mt-1 accent-[var(--color-maroon)]" />
+          <span>
+            Also send me occasional NeuroFlutter updates. Optional, separate
+            from this proposal, and you can unsubscribe from any email.
+          </span>
+        </label>
       </div>
 
       <div>
