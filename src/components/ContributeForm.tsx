@@ -5,14 +5,17 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { contributorTopics, OTHER_TOPIC } from "@/content/topics";
 
-const endpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "";
+// Posts to /api/contribute, a function running on Netlify that emails the
+// proposal to the editorial inbox. Deliberately a fixed path rather than an
+// environment variable: a missing or mistyped one is what silently broke this
+// form before, and the page gave no sign of it.
+const endpoint = "/api/contribute";
 
 const field =
   "mt-2 w-full border-b border-maroon/30 bg-transparent px-1 py-2.5 text-[1rem] text-ink focus:border-maroon focus:outline-none";
 const label = "block text-[0.9rem] text-ink-soft";
 
 export default function ContributeForm() {
-  const live = Boolean(endpoint);
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [topic, setTopic] = useState("");
 
@@ -21,7 +24,6 @@ export default function ContributeForm() {
     const form = e.currentTarget;
     // Honeypot: real people leave this empty.
     if ((form.elements.namedItem("website") as HTMLInputElement)?.value) return;
-    if (!live) return;
     setState("sending");
     try {
       const res = await fetch(endpoint, {
@@ -182,8 +184,8 @@ export default function ContributeForm() {
       <div>
         <button
           type="submit"
-          disabled={!live || state === "sending"}
-          className={`${live ? "btn-ink" : "btn-outline cursor-not-allowed"}`}
+          disabled={state === "sending"}
+          className="btn-ink"
         >
           {state === "sending" ? "Sending…" : "Submit Your Idea"}
         </button>
@@ -193,16 +195,6 @@ export default function ContributeForm() {
           forward to discovering what you&apos;re curious about.
         </p>
 
-        {!live && (
-          <p className="mt-4 max-w-[34rem] text-[0.92rem] leading-relaxed text-maroon">
-            Submissions by form open shortly. Until then, please send your idea
-            to{" "}
-            <a href={`mailto:${site.email}`} className="link-quiet">
-              {site.email}
-            </a>{" "}
-            and we&apos;ll reply the same way.
-          </p>
-        )}
         {state === "error" && (
           <p className="mt-4 max-w-[34rem] text-[0.92rem] leading-relaxed text-maroon">
             Your proposal didn&apos;t reach us. Nothing was sent, so please try
